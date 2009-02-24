@@ -9,6 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   map.articles_by_month_paginate ':year/:month/page/:page', :controller => 'articles', :action => 'index',
       :requirements =>{ :year => /\d{4}/, :month => /\d{1,2}/ }
   map.articles_by_year ':year', :controller => 'articles', :action => 'index', :year => /\d{4}/
+  map.articles_by_year_paginate ':year/page/:page', :controller => 'articles', :action => 'index', :year => /\d{4}/
 
   map.admin 'admin', :controller  => 'admin/dashboard', :action => 'index'
 
