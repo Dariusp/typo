@@ -78,7 +78,9 @@ class Blog < CachedModel
   setting :google_analytics,           :string, ''
   setting :rss_description,            :boolean, false
   setting :permalink_format,           :string, '/%year%/%month%/%day%/%title%'
-  
+  setting :robots,                     :string, ''
+  setting :index_categories,           :boolean, true
+  setting :index_tags,                 :boolean, true
   #deprecation warning for plugins removal
   setting :deprecation_warning,        :integer, 1
 
