@@ -18,7 +18,7 @@ body {
   font: 400 0.8em verdana, arial, sans-serif;
   line-height: 170%;
 
-  background: #666 url(../images/bg/header.jpg) repeat-x top left;
+  background: #666 url(../../images/theme/bg/header.jpg) repeat-x top left;
   color: #EEE;
 }
 
@@ -112,7 +112,7 @@ ol span {
 }
 
 ul {
-  list-style-image: url(../images/bg/bullet.gif);
+  list-style-image: url(../../images/theme/bg/bullet.gif);
 }
 
 del {
@@ -208,21 +208,21 @@ blockquote {
   padding-left: 27px;
   
   background-color: #444;  
-  background-image: url(../images/icons/quote.gif);
+  background-image: url(../../images/theme/icons/quote.gif);
   background-repeat: no-repeat;
   background-position: 5px 50%;  
 }
 
 blockquote.exclamation {
-  background-image: url(../images/icons/exclamation.gif);
+  background-image: url(../../images/theme/icons/exclamation.gif);
 }
 
 blockquote.stop {
-  background-image: url(../images/icons/stop.gif);
+  background-image: url(../../images/theme/icons/stop.gif);
 }
 
 blockquote.go {
-  background-image: url(../images/icons/go.gif);
+  background-image: url(../../images/theme/icons/go.gif);
 }
 
 

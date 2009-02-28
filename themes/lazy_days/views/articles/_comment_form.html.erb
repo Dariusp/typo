@@ -9,29 +9,40 @@
 
 <div id="preview" style="display:none"></div>
 
-  <h2 id="respond">Leave a comment</h2>
+<h2 id="formComments-title"><%= _("Leave a comment")%></h2>
+<div id="respond" class="post">
   <p>
-	 <%= text_field "comment", "author", :class => 'styled', :size => 22 %>
-    <label>Name</label>
-  </p>
-	<p>
-		<%= text_field "comment", "email", :class => 'styled', :size => 22 %>
-		<label>Email <%= content_tag('small', "(#{link_to('gravatar', 'http://gravatar.com')} enabled)") if this_blog.use_gravatar %></label>
-	</p>
-	<p>
-		<%= text_field "comment", "url", :class => 'styled', :size => 22 %>
-		<label>Url</label>
-	</p>
-  <p>
-      <%= text_area 'comment', 'body', :class => 'styled', :rows => 10, :cols => 100 %>
+		<label for="comment_author"><%= _("Name %s", content_tag(:small, '('+_('required')+')' ))%></label>
+		<%= text_field "comment", "author" %> 
   </p>
 
   <p>
-    <%= submit_to_remote('preview', 'Preview!',
+		<label for="comment_email"><%= _("Email")%> <%= content_tag('small', "(#{link_to('gravatar', 'http://gravatar.com')} "+ _("enabled") + ")") if this_blog.use_gravatar %> <small>(<%= _("never displayed") %>)</small></label>
+		<%= text_field "comment", "email" %>
+	</p>
+	<p>
+		<label><%= _("Website")%></label>
+		<%= text_field "comment", "url" %>
+	</p>
+
+  <p>
+    <label>
+      <%= _("Comments")%>:
+      <%= content_tag('small', link_to(_("Textile enabled"), "http://hobix.com/textile/")) if this_blog.comment_text_filter.include? 'textile' %>
+      <%= content_tag('small', link_to(_("Markdown enabled"), "http://daringfireball.net/projects/markdown/")) if this_blog.comment_text_filter.include? 'markdown' %>
+      <br />
+    </label>
+    <%= text_area 'comment', 'body', :rows => 10 %>
+  </p>
+
+  <p class="buttons">
+    <%= submit_to_remote('preview', _('Preview') + '!',
                          :update => 'preview',
                          :complete => "Element.show('preview')",
-                         :url    => @article.preview_comment_url) %>
-    <%= submit_tag 'Submit', :id => 'form-submit-button',  :onclick => "$('commentform').onsubmit();this.disabled=true;Element.hide('preview');return false;" %>
+                         :url    => @article.preview_comment_url,
+												 :html => {:class => 'submit', :id => 'form-preview-button'}) %>
+    <%= submit_tag _('Submit'), :id => 'form-submit-button', :class => 'submit', :onclick => "$('commentform').onsubmit();this.disabled=true;Element.hide('preview');return false;" %>
     <%= image_tag '/images/theme/spinner.gif', :id => 'comment_loading', :style => 'display:none' %>
   </p>
+</div>
 <% end %>

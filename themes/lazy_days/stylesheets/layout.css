@@ -49,7 +49,7 @@
 #header #title {
   position: absolute;
   z-index: 3;
-  top: 10px;
+  top: 15px;
   left: 130px;
 
   padding: 5px;
@@ -66,9 +66,14 @@
   color: #FFF;
 }
 
+#header h1 a {
+      text-decoration:none;
+      color:white;
+}
+
 #header h2 {
   position: absolute;
-  top: 10px;
+  top: 56px;
   right: 5px;
 
   margin: 0;
@@ -79,6 +84,9 @@
   color: #00F0EC;
 }
 
+#header h2 a{
+    color:inherit;
+}
 
 /* Sets where the header images will go */
 #header img.left {
@@ -202,12 +210,12 @@ ul.sideMenu {
   padding-left: 35px;
   font: 400 0.55em verdana, arial, sans-serif; 
   color: #FFF;  
-  background: url(../images/bg/bullet.gif) no-repeat 10px 0px;
+  background: url(../../images/theme/bg/bullet.gif) no-repeat 10px 0px;
 }
 
 .sideMenu li.here ul li a:hover {
   color: #9FF3FF;
-  background: #5F5F5F url(../images/bg/bullet.gif) no-repeat 10px 0px;
+  background: #5F5F5F url(../../images/theme/bg/bullet.gif) no-repeat 10px 0px;
 }
 
 
@@ -238,7 +246,7 @@ ul.sideMenu {
   clear: both;
   
   margin-top: -3.8em;
-  background: #000 url(../images/bg/footer.jpg) repeat-x top left;
+  background: #000 url(../../images/theme/bg/footer.jpg) repeat-x top left;
 }
 
 /* Sets the width of the footer content */
@@ -337,10 +345,104 @@ ul.sideMenu {
 
 .gradient {
   margin-bottom: 2em;
-  background: #555 url(../images/bg/gradient.jpg) repeat-x bottom left; 
+  background: #555 url(../../images/theme/bg/gradient.jpg) repeat-x bottom left;
 }
 
 
 
 
+#commentform {
+	/*background:url(../../images/theme/bg_white.png);*/
+	padding:10px 35px 55px 10px
+}
+#commentform p {
+    padding:0px;
+}
+
+	#commentform input {
+		width:180px;
+		padding:3px 3px 3px 23px;
+		margin: 15px;
+	}
+
+	#commentform textarea {
+		padding:3px;
+		margin: 15px 0 15px 15px;
+		font-size:1em;
+		width:480px;
+	}
+
+	#commentform label {
+		float:left;
+		width: 150px;
+		text-align:right;
+		height:30px;
+		padding-top:15px;
+		line-height:0.7em
+	}
+
+	#commentform label small {
+		font-size:0.6em
+	}
+
+	input#comment_author {
+		background:url(../../images/theme/user50.png) no-repeat #FFF 2% 50%;
+	}
+
+	input#comment_author:hover {
+		background:url(../../images/theme/user.png) no-repeat #FFF 2% 50%;
+	}
+
+	input#comment_email {
+		background:url(../../images/theme/email_open50.png) no-repeat #FFF 2% 50%;
+	}
+
+	input#comment_email:hover {
+		background:url(../../images/theme/email_open.png) no-repeat #FFF 2% 50%;
+	}
+
+	input#comment_url {
+		background:url(../../images/theme/world_link50.png) no-repeat #FFF 2% 50%;
+	}
+
+	input#comment_url:hover {
+		background:url(../../images/theme/world_link.png) no-repeat #FFF 2% 50%;
+	}
+
+	input#form-preview-button {
+		background:url(../../images/theme/page_edit50.png) no-repeat #AEAEAE 2% 50%;
+		width: 110px;
+		margin:0
+	}
+
+	input#form-preview-button:hover {
+		background:url(../../images/theme/page_edit.png) no-repeat #AEAEAF 2% 50%;
+	}
+
+
+	input#form-submit-button {
+		background:url(../../images/theme/accept50.png) no-repeat #AEAEAE 2% 50%;
+		width: 110px;
+		margin:0
+	}
+
+	input#form-submit-button:hover {
+		background:url(../../images/theme/accept.png) no-repeat #AEAEAF 2% 50%;
+	}
+
+.buttons{
+    text-align:right;
+    margin-right:40px;
+}
+ol#commentList  li {
+	margin: 10px 0 10px 0;
+	list-style: none;
+	list-style-type: none;
+}
+
+div.commentContent {
+	padding:10px;
+	background:url(../../images/theme/bg_white.png);
+	margin:5px 0 0 0;
+}
 
