@@ -129,7 +129,7 @@ class Article < Content
   end
 
   def permalink_url_options(nesting = false)
-    format_url = blog.permalink_format
+    format_url = blog.permalink_format.dup
     format_url.gsub!('%year%', year_url)
     format_url.gsub!('%month%', month_url)
     format_url.gsub!('%day%', day_url)
@@ -277,6 +277,7 @@ class Article < Content
     if date_range
       req_params[:published_at] = date_range
     end
+    return nil if req_params.empty? # no search if no params send
 
     find_published(:first, :conditions => req_params) or raise ActiveRecord::RecordNotFound
   end

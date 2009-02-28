@@ -27,6 +27,18 @@ class Admin::ContentController < Admin::BaseController
   def new 
     new_or_edit
   end
+
+  def create_fck_editor
+    current_user.editor = 2
+    current_user.save!
+    render :partial => "fckeditor"
+  end
+  
+  def create_simple_editor
+    current_user.editor = 0
+    current_user.save!
+    render :partial => "simple_editor"
+  end
   
   def edit
     @drafts = Article.find(:all, :conditions => "state='draft'")
