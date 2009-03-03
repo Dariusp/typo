@@ -6,8 +6,9 @@
     </dl>
 
   <div>
-    <%= article.html(:body) %>
-
+    <p>
+      <%= article.html(:body) %>
+    </p>
     <% if article.extended? -%>
       <div class="extended">
         <% if controller.action_name == 'index' -%>

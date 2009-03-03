@@ -1,0 +1,7 @@
+<% unless sidebar.pages.blank? -%>
+    <% for page in sidebar.pages -%>
+        <li>
+            <%= link_to page.title, page.permalink_url, :class=>(@active_name==page.name)?'here':'' %>
+        </li>
+    <% end %>
+<% end %>

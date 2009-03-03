@@ -7,6 +7,14 @@ module SidebarHelper
     end
   end
 
+  def render_page_sidebar(*sidebars)
+    (sidebars.blank? ? Sidebar.find(:all, :conditions=>{:type=>"PageSidebar"}, :order => 'active_position ASC') : sidebars).inject('') do |acc, sb|
+      @sidebar = sb
+      sb.parse_request(contents, params)
+      acc + render_sidebar(sb)
+    end
+  end
+
   def render_sidebar(sidebar)
     if sidebar.view_root
       # Allow themes to override sidebar views

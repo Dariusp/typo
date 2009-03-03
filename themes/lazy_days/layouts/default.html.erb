@@ -7,7 +7,6 @@
   <%= stylesheet_link_tag '/stylesheets/theme/html.css', :media => 'all' %>
   <%= stylesheet_link_tag '/stylesheets/theme/print.css', :media => 'print' %>
 </head>
-
 <body>
   <div id="content">
 <!-- start header -->
@@ -16,24 +15,18 @@
         <h1><%= link_to this_blog.blog_name, this_blog.base_url %></h1>
         <h2><%= this_blog.blog_subtitle %></h2>
       </div>
-      <%= image_tag '/images/theme/bg/balloons.gif' %>
-      <%= image_tag '/images/theme/bg/header_left.jpg' %>
-      <%= image_tag '/images/theme/bg/header_right.jpg' %>
+      <%= image_tag '/images/theme/bg/balloons.gif', :class => "balloons" %>
+      <%= image_tag '/images/theme/bg/header_left.jpg', :class => "left"  %>
+      <%= image_tag '/images/theme/bg/header_right.jpg', :class => "right" %>
   </div>
  <!-- end header -->
-
   <!-- MAIN MENU: Top horizontal menu of the site.  Use class="here" to turn the current page tab on -->
   <div id="mainMenu">
     <ul class="floatRight">
-      <li><a href="index.html" title="Introduction" class="here">Intro</a></li>
-      <li><a href="help.html" title="Learn how to use the template">Help</a></li>
-      <li><a href="tags.html" title="View the styled tags">Tags</a></li>
-      <li><a href="print.html" title="View the print layout">Print</a></li>
-      <li><a href="http://fullahead.org/contact.html" title="Get in touch" class="last">Mail</a></li>
+      <li><%= link_to (_("Home"),"/", :class=>(@active_name)?'':'here')%></li>
+      <%= render_page_sidebar  %>
     </ul>
   </div>
-
-
   <div id="page">
     <div class="width25 floatLeft leftColumn">
       <!-- sidebar components -->
@@ -48,17 +41,8 @@
   <div id="footer">
   <div id="width">
     <span class="floatLeft">
-      design <a href="http://fullahead.org" title="Goto Fullahead">Fullahead</a> <span class="grey">|</span>
       valid <a href="http://validator.w3.org/check?uri=referer" title="Validate XHTML">XHTML</a> <span class="grey">|</span>
       should be valid <a href="http://jigsaw.w3.org/css-validator" title="Validate CSS">CSS</a>
-    </span>
-
-    <span class="floatRight">
-      <a href="index.html" title="Introduction">intro</a> <span class="grey">|</span>
-      <a href="help.html" title="Learn how to use the template">help</a> <span class="grey">|</span>
-      <a href="tags.html" title="View the styled tags">tags</a> <span class="grey">|</span>
-      <a href="print.html" title="View the print layout">print</a> <span class="grey">|</span>
-      <a href="http://fullahead.org/contact.html" title="Get in touch">mail</a>
     </span>
   </div>
   </div>

@@ -76,5 +76,6 @@ class ApplicationController < ActionController::Base
     cookies[name] = { :value => value, :path => path || "/#{controller_name}",
                        :expires => 6.weeks.from_now }
   end
+
 end
 
