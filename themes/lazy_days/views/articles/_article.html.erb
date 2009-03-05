@@ -2,13 +2,11 @@
 
     <h1><%= (controller.action_name.include? 'permalink') ? article.title : link_to_permalink(article,article.title) %></h1>
     <dl>
-      <%= _("Posted by") %> <cite><%= author_link(article) %></cite> <abbr class="published" title="<%= article.published_at.xmlschema %>"><%= js_distance_of_time_in_words_to_now article.published_at %></abbr>
+      <dt><%= _("Posted by") %> <cite><%= author_link(article) %></cite> <abbr class="published" title="<%= article.published_at.xmlschema %>"><%= js_distance_of_time_in_words_to_now article.published_at %></abbr></dt>
     </dl>
 
   <div>
-    <p>
       <%= article.html(:body) %>
-    </p>
     <% if article.extended? -%>
       <div class="extended">
         <% if controller.action_name == 'index' -%>
@@ -39,5 +37,5 @@
 		<%= link_to_permalink(article,pluralize(article.published_comments.size, _('no comments') , _('1 comment'), __('%d comments')),'comments', 'comments') %>
 	</p>
   <% end %>
-  <br style="clear: left;" />
+  <div style="clear: left;"><!-- --></div>
 </div>
