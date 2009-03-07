@@ -17,8 +17,9 @@
       </div>
     <% end -%>
   </div>
+
   <br style="clear: left;" />
-  <% if controller.controller_name == "articles" and controller.action_name == "show" %>
+  <% if controller.controller_name == "redirect" and controller.action_name == "redirect" %>
   <div class="meta">
     <p class="infos"><small>
       <%= _("This entry was posted on %s", content_tag(:abbr, js_distance_of_time_in_words_to_now(@article.published_at), {:class => 'published', :title => @article.published_at.xmlschema})) %>
@@ -30,6 +31,12 @@
     <p class="tags">
       <%= tag_links(@article) unless @article.tags.empty? %>
     </p>
+ 
+    <ul>
+    <%  article.find_relative(5).each do |a| %>
+      <li><%=link_to_permalink(a, a.title)%></li>
+    <%  end%>
+    </ul>
   </div>
   <% else %>
 	<p class="links">

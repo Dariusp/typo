@@ -480,6 +480,22 @@ class Article < Content
     end
   end
 
+  def find_relative limit
+    tag_ids_string = self.tags.map{|a| a=a.id}.join(",")
+    if !tag_ids_string.empty?
+      self.class.find_by_sql(["SELECT
+          * , count(at.article_id) as hit_score
+        FROM
+          contents
+        INNER JOIN articles_tags as at ON
+          (
+            at.tag_id in ("+tag_ids_string+")
+            AND at.article_id=`contents`.id
+          )
+        WHERE contents.id!=?	GROUP BY at.article_id ORDER BY hit_score DESC LIMIT 0, ? ",self.id,limit])
+    end
+  end
+
   def atom_content(xml)
     if self.user && self.user.name
       rss_desc = "<hr /><p><small>#{_('Original article writen by')} #{self.user.name} #{_('and published on')} <a href='#{blog.base_url}'>#{blog.blog_name}</a> | <a href='#{self.permalink_url}'>#{_('direct link to this article')}</a> | #{_('If you are reading this article elsewhere than')} <a href='#{blog.base_url}'>#{blog.blog_name}</a>, #{_('it has been illegally reproduced and without proper authorization')}.</small></p>"
