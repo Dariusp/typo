@@ -31,12 +31,13 @@
     <p class="tags">
       <%= tag_links(@article) unless @article.tags.empty? %>
     </p>
- 
+    <% if article.find_relative(5) %>
     <ul>
     <%  article.find_relative(5).each do |a| %>
       <li><%=link_to_permalink(a, a.title)%></li>
     <%  end%>
     </ul>
+    <%end%>
   </div>
   <% else %>
 	<p class="links">
