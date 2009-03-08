@@ -19,7 +19,7 @@ class PageCache
       FileUtils.rm File.join(public_path, page_save) if File.exist?(File.join(public_path, page_save)) 
     end
     FileUtils.rm_f File.join(Rails.root,'path_cache')
-    FileUtils.rm File.join(public_path, 'index.html') if File.exist(File.join(public_path,'index.html'))
+    FileUtils.rm File.join(public_path, 'index.html') if File.exist?(File.join(public_path,'index.html'))
   end
 
   def self.old_sweep_all
