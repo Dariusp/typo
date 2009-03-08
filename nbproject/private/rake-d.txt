@@ -55,6 +55,7 @@ doc\:plugins\:static_sidebar=Generate documentation for the static_sidebar plugi
 doc\:plugins\:tag_sidebar=Generate documentation for the tag_sidebar plugin
 doc\:plugins\:typo_converter=Generate documentation for the typo_converter plugin
 doc\:plugins\:typo_login_system=Generate documentation for the typo_login_system plugin
+doc\:plugins\:typo_related_posts_plus=Generate documentation for the typo_related_posts_plus plugin
 doc\:plugins\:typo_textfilter_code=Generate documentation for the typo_textfilter_code plugin
 doc\:plugins\:typo_textfilter_flickr=Generate documentation for the typo_textfilter_flickr plugin
 doc\:plugins\:typo_textfilter_htmlfilter=Generate documentation for the typo_textfilter_htmlfilter plugin

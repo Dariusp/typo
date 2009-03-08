@@ -16,7 +16,7 @@ class PageCache
     logger.debug "PageCache - sweep_all called by #{caller[1].inspect}"
     return unless File.exist?(File.join(Rails.root,'path_cache'))
     File.read(File.join(Rails.root,'path_cache')).split("\n").each do |page_save|
-      FileUtils.rm File.join(public_path, page_save)
+      FileUtils.rm File.join(public_path, page_save) if File.exists?(File.join(public_path, page_save))
     end
     FileUtils.rm_f File.join(Rails.root,'path_cache')
   end
