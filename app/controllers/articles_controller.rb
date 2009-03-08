@@ -1,3 +1,4 @@
+
 class ArticlesController < ContentController
   before_filter :verify_config
   before_filter :auto_discovery_feed, :only => [:show, :index]

@@ -1,0 +1,26 @@
+TypoRelatedPostsPlus
+====================
+
+Typo plugin to display relative posts ordered by relative
+
+Install
+=======
+Download and unpack to vendor/plugins or
+./script/plugin install git://github.com/Dariusp/typo_related_posts_plus.git
+
+restart rails application
+
+in view (theme/views/articles/_article.html.erb) you can use :
+
+<%if article.related(5)%>
+<ul>
+  <%article.related(5).each do |a|%>
+  <li><%=link_to_permalink(a, a.title) %></li>
+  <%end%>
+</ul>
+<%end%>
+
+
+
+
+Copyright (c) 2009 [Dariusp], released under the MIT license
