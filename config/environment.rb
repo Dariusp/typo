@@ -62,7 +62,7 @@ Rails::Initializer.run do |config|
   config.gem 'htmlentities'
   config.gem 'json'
   config.gem 'calendar_date_select'
-  config.gem 'fiveruns_tuneup'
+#  config.gem 'fiveruns_tuneup'
 
   # Declare needed (github) gems
   config.gem 'datanoise-actionwebservice', :version => '2.2.2', :lib => 'actionwebservice', :source => 'http://gems.github.com'
