@@ -33,8 +33,8 @@ describe Article do
 
   def test_feed_url
     a = contents(:article3)
-    assert_equal "http://myblog.net/xml/atom10/article/#{a.id}/feed.xml", a.feed_url(:atom10)
-    assert_equal "http://myblog.net/xml/rss20/article/#{a.id}/feed.xml", a.feed_url(:rss20)
+    assert_equal "http://myblog.net/2004/06/01/article-3.atom", a.feed_url(:atom10)
+    assert_equal "http://myblog.net/2004/06/01/article-3.rss", a.feed_url(:rss20)
   end
 
   def test_create
@@ -80,6 +80,14 @@ describe Article do
     assert a.save
 
     assert_equal 'this-is-a-test', a.permalink
+  end
+
+  def test_multibyte_title
+    a = Article.new
+    a.title = "ルビー"
+    assert a.save
+
+    assert_equal '%E3%83%AB%E3%83%93%E3%83%BC', a.permalink
   end
 
   def test_urls
@@ -148,7 +156,7 @@ describe Article do
     @articles = Article.find_published
     assert_results_are(:search_target, :article1, :article2,
                        :article3, :inactive_article,:xmltest,
-                       :spammed_article, :publisher_article )
+                       :spammed_article, :publisher_article, :markdown_article)
 
     @articles = Article.find_published(:all,
                                                   :conditions => "title = 'Article 1!'")
@@ -194,7 +202,11 @@ describe Article do
   def assert_sets_trigger(art)
     assert_equal 1, Trigger.count
     assert Trigger.find(:first, :conditions => ['pending_item_id = ?', art.id])
-    sleep 4
+    assert !art.published
+    t = Time.now
+    # We stub the Time.now answer to emulate a sleep of 4. Avoid the sleep. So
+    # speed up in test
+    Time.stub!(:now).and_return(t + 5.seconds)
     Trigger.fire
     art.reload
     assert art.published
