@@ -15,7 +15,7 @@ end
 #
 # Typo decides which Blog object to use by searching for a Blog base_url that
 # matches the base_url computed for each request.
-class Blog < CachedModel
+class Blog < ActiveRecord::Base
   include ConfigManager
   extend ActiveSupport::Memoizable
 
@@ -82,6 +82,7 @@ class Blog < CachedModel
   setting :robots,                     :string, ''
   setting :index_categories,           :boolean, true
   setting :index_tags,                 :boolean, true
+  setting :admin_display_elements,     :integer, 10
   #deprecation warning for plugins removal
   setting :deprecation_warning,        :integer, 1
 

@@ -31,7 +31,7 @@ class Admin::FeedbackController < Admin::BaseController
       params.delete(:page)
     end
 
-    @feedback = Feedback.paginate :page => params[:page], :order => 'feedback.created_at desc', :conditions => conditions, :per_page => 10
+    @feedback = Feedback.paginate :page => params[:page], :order => 'feedback.created_at desc', :conditions => conditions, :per_page => this_blog.admin_display_elements
   end
 
   def article
@@ -142,7 +142,7 @@ class Admin::FeedbackController < Admin::BaseController
 
   def delete_all_spam
     if request.post?
-      Feedback.delete_all('state in ("presumed_spam", "spam")')
+      Feedback.delete_all(['state in (?,?)', "presumed_spam", "spam"])
       flash[:notice] = _("All spam have been deleted")
     end
   end

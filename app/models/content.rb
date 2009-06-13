@@ -24,12 +24,13 @@ class Content < ActiveRecord::Base
   named_scope :published_at_like, lambda {|date_at| {:conditions => ['published_at LIKE ? ', "%#{date_at}%"]}}
   named_scope :user_id, lambda {|user_id| {:conditions => ['user_id = ?', user_id]}}
   named_scope :published, {:conditions => ['published = ?', true]}
+  named_scope :order, lambda {|order_by| {:order => order_by}}
   named_scope :not_published, {:conditions => ['published = ?', false]}
   named_scope :draft, {:conditions => ['state = ?', 'draft']}
   named_scope :no_draft, {:conditions => ['state <> ?', 'draft'], :order => 'created_at DESC'}
   named_scope :searchstring, lambda {|search_string|
-    tokens = search_string.split.collect {|c| "%#{c.downcase}%"}
-    {:conditions => [(['state = ? AND (LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)']*tokens.size).join(' AND '),
+    tokens = search_string.split(' ').collect {|c| "%#{c.downcase}%"}
+    {:conditions => ['state = ? AND ' + (['(LOWER(body) LIKE ? OR LOWER(extended) LIKE ? OR LOWER(title) LIKE ?)']*tokens.size).join(' AND '),
                         "published", *tokens.collect{ |token| [token] * 3 }.flatten]}
   }
 
@@ -309,7 +310,7 @@ class Content < ActiveRecord::Base
   end
 
   def rss_description(xml)
-    if self.user && self.user.name
+    if respond_to?(:user) && self.user.name
       rss_desc = "<hr /><p><small>#{_('Original article writen by')} #{self.user.name} #{_('and published on')} <a href='#{blog.base_url}'>#{blog.blog_name}</a> | <a href='#{self.permalink_url}'>#{_('direct link to this article')}</a> | #{_('If you are reading this article elsewhere than')} <a href='#{blog.base_url}'>#{blog.blog_name}</a>, #{_('it has been illegally reproduced and without proper authorization')}.</small></p>"
     else
       rss_desc = ""

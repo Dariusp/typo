@@ -1,7 +1,7 @@
 require 'rake/gempackagetask'
 require 'rake/contrib/rubyforgepublisher'
 
-PKG_VERSION = "5.2"
+PKG_VERSION = "5.3"
 PKG_NAME = "typo"
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
 RUBY_FORGE_PROJECT = 'typo'
@@ -30,14 +30,13 @@ spec = Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY 
   s.executables = ['typo']
   
-  s.add_dependency("rails", ">= 2.2.2")
+  s.add_dependency("rails", "= 2.2.2")
   s.add_dependency("mongrel", ">= 1.1.5")
   s.add_dependency("mongrel_cluster", ">= 1.0.5")
   s.add_dependency("rails-app-installer", ">= 0.2.0")
   s.add_dependency("ruby-debug", ">= 0.10.3")
   s.add_dependency("flexmock", ">= 0.8.3")
-  s.add_dependency("htmlentities", "4.0.0")
-  s.add_dependency("json", ">=1.1.3")
+  s.add_dependency("rspec-rails", "= 1.1.11")
 end
 
 Rake::GemPackageTask.new(spec) do |p|

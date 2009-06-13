@@ -172,9 +172,12 @@ small {
 }
 
 #overall {
-  padding: 10px 0 20px 20px;
 	width: 1000px;
 	background: #fff;
+}
+
+#main {
+	padding: 10px 0 20px 20px;
 }
 
 #footer {
@@ -330,7 +333,6 @@ tr.menubar {
 .admin {
   padding: 0 10px 5px 10px;
   margin-bottom: 10px;
-  position: relative;
 }
 
 
@@ -633,6 +635,10 @@ input.submit {
 /* End of login form */
 
 /* Notices, infos and errors */
+#overall #flash {
+	margin-left: 20px;
+}
+
 #flash span {
   background: #fff;
   padding: 5px;
@@ -846,12 +852,35 @@ div.auto_complete ul strong.highlight {
 #visual_editor {
 	background: #464646;
 	padding: 10px;
+	border-radius: 3px;
+}
+
+#simple_editor {
+	border-radius: 3px;
+	-moz-border-bottom-left-radius: 3px;
+	-moz-border-bottom-right-radius: 3px;
+	-webkit-border-bottom-left-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+}
+
+#visual_editor {
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 4px;
 }
 
 #quicktags {
 	background: #464646;
 	padding-top: 10px;
 	padding-left: 10px;
+	border-radius: 3px 0 0 0;
+	-moz-border-top-left-radius: 3px 0 0 0;
+	-webkit-border-top-left-radius: 4px;
+}
+
+#saveblock {
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 4px;
 }
 
 #editor-menu {
@@ -861,9 +890,19 @@ div.auto_complete ul strong.highlight {
 #editor-menu span.active {
 	background: #464646;
 	padding: 5px;
+	border-radius: 3px 0 0 0;
+	-moz-border-top-left-radius: 3px 0 0 0;
+	-moz-border-top-right-radius: 3px 0 0 0;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-top-right-radius: 4px;
 }
 
 #editor-menu span.inactive {
 	background: #f9f9f9;
 	padding: 0px;
+}
+
+ul.admin {
+	margin-left: 0;
+	padding-left: 0;
 }

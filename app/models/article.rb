@@ -114,8 +114,16 @@ class Article < Content
     o
   }
 
+  def permalink
+    if read_attribute(:permalink)
+      CGI.escape(read_attribute(:permalink))
+    else
+      nil
+    end
+  end
+
   def stripped_title
-    CGI.escape(self.title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url)
+    self.title.tr(FROM, TO).gsub(/<[^>]*>/, '').to_url
   end
 
   def year_url
@@ -188,11 +196,11 @@ class Article < Content
   end
 
   def comment_url
-    blog.url_for("comments?article_id=#{self.id}")
+    blog.url_for("comments?article_id=#{self.id}", :only_path => true)
   end
 
   def preview_comment_url
-    blog.url_for("comments/preview?article_id=#{self.id}")
+    blog.url_for("comments/preview?article_id=#{self.id}", :only_path => true)
   end
 
   def feed_url(format = :rss20)

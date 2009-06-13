@@ -4,7 +4,7 @@ class Admin::UsersController < Admin::BaseController
 
   def index
     if current_user.admin?
-      @users = User.paginate :page => params[:page], :order => 'login asc', :per_page => 10
+      @users = User.paginate :page => params[:page], :order => 'login asc', :per_page => this_blog.admin_display_elements
     else
       redirect_to :action => 'edit'
     end
@@ -14,6 +14,7 @@ class Admin::UsersController < Admin::BaseController
     @user = User.new(params[:user])
     @user.text_filter = TextFilter.find_by_name(this_blog.text_filter)
     setup_profiles
+    @user.name = @user.login
     if request.post? and @user.save
       flash[:notice] = _('User was successfully created.')
       redirect_to :action => 'index'

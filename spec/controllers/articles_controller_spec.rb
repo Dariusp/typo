@@ -17,7 +17,6 @@ describe 'ArticlesController' do
     IPSocket.stub!(:getaddress).and_return do
       raise SocketError.new("getaddrinfo: Name or service not known")
     end
-    CachedModel.cache_reset
     controller.send(:reset_blog_ids)
   end
 
@@ -77,6 +76,10 @@ describe 'ArticlesController' do
         response.should have_tag('head>link[href=?]','http://test.host/search/a.atom')
       end
 
+      it 'should have content markdown interpret and without html tag' do
+        response.should have_tag('div', /in markdown format\n\n\nwe\nuse\nok to define a link\n...\n/)
+      end
+
     end
 
     it 'should render feed rss by search' do
@@ -95,6 +98,23 @@ describe 'ArticlesController' do
       get 'search', :q => 'abcdefghijklmnopqrstuvwxyz'
       response.should render_template('articles/error.html.erb')
       assigns[:articles].should be_empty
+    end
+  end
+
+  describe '#livesearch action' do
+
+    describe 'with a query with several words' do
+
+      before :each do
+        get :live_search, :q => 'hello world'
+      end
+
+      it 'should be valid' 
+      it 'should render without layout'
+      it 'should render template live_search'
+      it 'should not have h3 tag'
+
+
     end
   end
 

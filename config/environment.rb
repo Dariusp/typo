@@ -190,8 +190,3 @@ if RAILS_ENV != 'test'
 end
 
 FLICKR_KEY='84f652422f05b96b29b9a960e0081c50'
-
-#require 'memcache_util'
-require 'cached_model'
-CachedModel.use_local_cache = true
-CachedModel.use_memcache = false
